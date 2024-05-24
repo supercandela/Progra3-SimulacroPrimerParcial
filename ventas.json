@@ -1,70 +1,12 @@
 [
     {
-        "fecha": {
-            "date": "2024-05-24 06:28:39.845965",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 74,
-        "pedido": 288511
+        "fecha": "2405240505",
+        "id": 39,
+        "pedido": 164750
     },
     {
-        "fecha": {
-            "date": "2024-05-24 06:29:13.691656",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 13,
-        "pedido": 927048
-    },
-    {
-        "fecha": {
-            "date": "2024-05-24 06:34:00.528687",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 92,
-        "pedido": 468558
-    },
-    {
-        "fecha": null,
-        "id": 4,
-        "pedido": 929420
-    },
-    {
-        "fecha": {
-            "date": "2024-05-24 06:48:52.051106",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 26,
-        "pedido": 421217
-    },
-    {
-        "fecha": {
-            "date": "2024-05-24 06:49:37.213582",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 91,
-        "pedido": 924738
-    },
-    {
-        "fecha": {
-            "date": "2024-05-24 06:52:16.341064",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 83,
-        "pedido": 895019
-    },
-    {
-        "fecha": {
-            "date": "2024-05-24 06:52:27.119836",
-            "timezone_type": 3,
-            "timezone": "Europe\/Berlin"
-        },
-        "id": 77,
-        "pedido": 341323
+        "fecha": "2405240505",
+        "id": 63,
+        "pedido": 849938
     }
 ]

@@ -168,9 +168,9 @@ class Helado
      * Retorna true si alcanza
      * Retorna false si no alcanza
      */
-    public function VerificarStock($stock)
+    public static function VerificarStock($producto, $stock)
     {
-        return $this->_stock >= $stock;
+        return $producto->_stock >= $stock;
     }
 
     /**

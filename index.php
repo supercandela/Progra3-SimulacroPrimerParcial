@@ -32,6 +32,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "No se especificó ninguna acción.\n\n";
     }
+} else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    if (isset($_POST['accion'])) {
+        $accion = $_POST['accion'];
+        
+        switch ($accion) {
+            case 'altaHelado':
+                include 'ConsultasVentas.php';
+                break;
+
+            default:
+                echo "Acción no válida.\n\n";
+                break;
+        }
+    } else {
+        echo "No se especificó ninguna acción.\n\n";
+    }
 } else {
     echo "Método no soportado.\n\n";
 }

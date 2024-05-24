@@ -10,9 +10,12 @@ require_once("Helado.php");
 require_once("Venta.php");
 
 if (
-    isset($_POST["email"]) && isset($_POST["sabor"]) &&
-    isset($_POST["tipo"]) && isset($_POST["stock"]) && isset($_POST["vaso"])
-    && isset($_FILES["imagen"])
+    isset($_POST["email"]) && 
+    isset($_POST["sabor"]) &&
+    isset($_POST["tipo"]) && 
+    isset($_POST["stock"]) && 
+    isset($_POST["vaso"]) && 
+    isset($_FILES["imagen"])
 ) {
 
     //Dato Usuario
@@ -40,9 +43,9 @@ if (
     $indiceH = Helado::VerificarSiExiste($listaHelados, $heladoVendido);
 
     if ($indiceH != -1) {
-        if ($listaHelados[$indiceH]->VerificarStock($stock)) {
+        if (Helado::VerificarStock($listaHelados[$indiceH], $stock)) {
             //Guardar fecha, numero de pedido y id
-            $venta = new Venta($fechaVenta);
+            $venta = new Venta($fechaVenta->format("ymdhm"));
             $listaVentas = Venta::ObtenerListaDeVentas();
             array_push($listaVentas, $venta);
             if (Venta::GuardarVentasJSON($listaVentas)) {
@@ -69,7 +72,7 @@ if (
                 $extension = substr($tipo_archivo, strpos($tipo_archivo, '/') + 1);
                 $emailFormateado = explode("@", $email);
 
-                $cargaFoto = Venta::GuardarFoto($_FILES['imagen'], $sabor, $tipo, $vaso, $emailFormateado[0], $fechaVenta->format("mdyhm"), $extension);
+                $cargaFoto = Venta::GuardarFoto($_FILES['imagen'], $sabor, $tipo, $vaso, $emailFormateado[0], $fechaVenta->format("ymdhm"), $extension);
                 if ($cargaFoto) {
                     echo "La imagen fue guardada exitosamente.\n\n";
                 } else {

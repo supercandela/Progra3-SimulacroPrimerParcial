@@ -5,6 +5,8 @@ class Venta
     private $_id;
     private $_pedido;
     private $_fecha;
+    private $_cantidad;
+    private $_usuario;
 
     public function __construct ($fecha = new DateTime(), $id = 0, $pedido = 0) {
         $this->_fecha = $fecha;
