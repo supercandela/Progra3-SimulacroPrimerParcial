@@ -4,8 +4,6 @@
 
 Alumna: BOGADO, Candela
 
-Debe recibir el número de pedido, el email del usuario, el nombre, tipo, vaso y cantidad, si existe se modifica , de
-lo contrario informar que no existe ese número de pedido.
 */
 
 require_once("Venta.php");
@@ -35,7 +33,7 @@ if (
             echo "La venta no fue actualizada.\n\n";
         }
     } else {
-        echo "No existe el número de pedido" . $pedido . ".\n\n";
+        echo "No existe el número de pedido " . $pedido . ".\n\n";
     }
 } else {
     echo "Parametros incorrectos\n\n";

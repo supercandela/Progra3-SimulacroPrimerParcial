@@ -216,10 +216,23 @@ class Venta
         return $indiceARetornar;
     }
 
-    public function ModificarPedido ($usuario, $sabor, $vaso, $cantidad) {
+    public function ModificarPedido($usuario, $sabor, $vaso, $cantidad)
+    {
         $this->_usuario = $usuario;
         $this->_sabor = $sabor;
         $this->_vaso = $vaso;
         $this->_cantidad = $cantidad;
+    }
+
+    // Función para eliminar un objeto del array por su id
+    public static function EliminarObjetoPorId($lista, $pedido)
+    {
+        foreach ($lista as $key => $objeto) {
+            if ($objeto->_pedido == $pedido) {
+                unset($lista[$key]);
+                break;
+            }
+        }
+        return $lista;
     }
 }
