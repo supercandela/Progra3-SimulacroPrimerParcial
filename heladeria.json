@@ -1,0 +1,18 @@
+[
+    {
+        "sabor": "frutilla",
+        "precio": 150,
+        "tipo": "agua",
+        "vaso": "plastico",
+        "stock": 300,
+        "id": 94
+    },
+    {
+        "sabor": "chocolate",
+        "precio": 150,
+        "tipo": "agua",
+        "vaso": "plastico",
+        "stock": 94,
+        "id": 44
+    }
+]
