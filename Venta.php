@@ -174,7 +174,7 @@ class Venta
      * @param string $orden Orden de la clasificación ('asc' para ascendente, 'desc' para descendente).
      * @return array Array ordenado.
      */
-    public static function ordenarPorPropiedad($lista, string $propiedad, string $orden = 'asc')
+    public static function OrdenarPorPropiedad($lista, string $propiedad, string $orden = 'asc')
     {
         usort($lista, function ($a, $b) use ($propiedad, $orden) {
             if (!property_exists($a, $propiedad) || !property_exists($b, $propiedad)) {
@@ -192,5 +192,34 @@ class Venta
             }
         });
         return $lista;
+    }
+
+    /**
+     * Verifica si el numero de pedido existe en el listado
+     * Retorna el índice si coincide
+     * Retorna -1 si no coincide.
+     */
+    public static function FiltrarPorPedido($lista, $pedido)
+    {
+        if (count($lista) === []) {
+            echo "Lista vacía. \n\n";
+            return -1;
+        }
+        $indiceARetornar = -1;
+
+        for ($i = 0; $i < count($lista); $i++) {
+            if ($lista[$i]->_pedido == $pedido) {
+                $indiceARetornar = $i;
+                break;
+            }
+        }
+        return $indiceARetornar;
+    }
+
+    public function ModificarPedido ($usuario, $sabor, $vaso, $cantidad) {
+        $this->_usuario = $usuario;
+        $this->_sabor = $sabor;
+        $this->_vaso = $vaso;
+        $this->_cantidad = $cantidad;
     }
 }

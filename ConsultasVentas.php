@@ -6,7 +6,6 @@ Alumna: BOGADO, Candela
 
 */
 
-// require_once("Helado.php");
 require_once("Venta.php");
 
 if (isset($_GET["fecha"])) {

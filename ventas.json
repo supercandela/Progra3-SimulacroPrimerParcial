@@ -1,9 +1,9 @@
 [
     {
-        "usuario": "usuario@mail.com",
-        "cantidad": 1,
-        "sabor": "chocolate",
-        "vaso": "cucurucho",
+        "usuario": "gaston@mail.com",
+        "cantidad": 5,
+        "sabor": "naranja",
+        "vaso": "plastico",
         "fecha": "2405240605",
         "id": 54,
         "pedido": 385173

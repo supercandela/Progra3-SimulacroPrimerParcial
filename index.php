@@ -48,6 +48,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         echo "No se especificó ninguna acción.\n\n";
     }
+} else if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+    parse_str(file_get_contents("php://input"), $vars);
+
+    if (isset($vars['accion'])) {
+        $accion = $vars['accion'];
+        
+        switch ($accion) {
+            case 'modificarVenta':
+                include 'ModificarVenta.php';
+                break;
+
+            default:
+                echo "Acción no válida.\n\n";
+                break;
+        }
+    } else {
+        echo "No se especificó ninguna acción.\n\n";
+    }
 } else {
     echo "Método no soportado.\n\n";
 }
