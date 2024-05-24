@@ -12,7 +12,8 @@ class Venta
     private $_sabor;
     private $_vaso;
 
-    public function __construct ($usuario, $cantidad, $sabor, $vaso, $fecha, $id = 0, $pedido = 0) {
+    public function __construct($usuario, $cantidad, $sabor, $vaso, $fecha, $id = 0, $pedido = 0)
+    {
         $this->_usuario = $usuario;
         $this->_cantidad = $cantidad;
         $this->_sabor = $sabor;
@@ -34,7 +35,8 @@ class Venta
      * Obtener array de ventas desde ventas.json
      * Retorna un array de ventas
      */
-    public static function ObtenerListaDeVentas () {
+    public static function ObtenerListaDeVentas()
+    {
         $array = array();
         // Verificar si el archivo existe
         if (file_exists("./ventas.json")) {
@@ -55,7 +57,8 @@ class Venta
      * Retorna false si no pudo completar el guardado completo
      * Retorna true si guardó todos los elementos en el archivo
      */
-    public static function GuardarVentasJSON ($ventas) {
+    public static function GuardarVentasJSON($ventas)
+    {
         if (count($ventas) > 0) {
             $ventasValoresPublicos = array();
             foreach ($ventas as $venta) {
@@ -85,7 +88,7 @@ class Venta
     /**
      * sube la imagen al servidor en la carpeta /ImagenesDeLaVenta/2024.
      */
-    public static function GuardarFoto ($foto, $sabor, $tipo, $vaso, $email, $fecha, $tipo_archivo)
+    public static function GuardarFoto($foto, $sabor, $tipo, $vaso, $email, $fecha, $tipo_archivo)
     {
         //Carpeta donde voy a guardar los archivos
         $carpeta_archivos = 'ImagenesDeLaVenta/2024/';
@@ -99,7 +102,8 @@ class Venta
         }
     }
 
-    public static function FiltrarListaPorFechaExacta ($lista, Datetime $fecha) {
+    public static function FiltrarListaPorFechaExacta($lista, Datetime $fecha)
+    {
         $listaConFiltro = array();
         if (count($lista) > 0) {
             for ($i = 0; $i < count($lista); $i++) {
@@ -111,7 +115,8 @@ class Venta
         return $listaConFiltro;
     }
 
-    public static function SumarCantidades ($lista) {
+    public static function SumarCantidades($lista)
+    {
         $cantidadTotal = 0;
         if (count($lista) > 0) {
             for ($i = 0; $i < count($lista); $i++) {
@@ -121,7 +126,8 @@ class Venta
         return $cantidadTotal;
     }
 
-    public static function FiltrarListaPorUsuario ($lista, $usuario) {
+    public static function FiltrarListaPorUsuario($lista, $usuario)
+    {
         $listaConFiltro = array();
         if (count($lista) > 0) {
             for ($i = 0; $i < count($lista); $i++) {
@@ -133,7 +139,8 @@ class Venta
         return $listaConFiltro;
     }
 
-    public function MostrarVenta () {
+    public function MostrarVenta()
+    {
         echo "ID Venta: " . $this->_id . "\n";
         echo "ID Pedido: " . $this->_pedido . "\n";
         echo "Usuario: " . $this->_usuario . "\n";
@@ -143,4 +150,47 @@ class Venta
         echo "Tipo de vaso: " . $this->_vaso . "\n\n";
     }
 
+    public static function FiltrarListaPorRangoDeFechas($lista, Datetime $fechaMin, DateTime $fechaMax)
+    {
+        $listaConFiltro = array();
+        if (count($lista) > 0) {
+            for ($i = 0; $i < count($lista); $i++) {
+                if (
+                    $lista[$i]->_fecha->format('Y-m-d') >= $fechaMin->format('Y-m-d') &&
+                    $lista[$i]->_fecha->format('Y-m-d') <= $fechaMax->format('Y-m-d')
+                ) {
+                    array_push($listaConFiltro, $lista[$i]);
+                }
+            }
+        }
+        return $listaConFiltro;
+    }
+
+    /**
+     * Ordena un array de objetos por una propiedad especificada.
+     *
+     * @param array $lista Array de objetos a ordenar.
+     * @param string $propiedad Propiedad por la cual ordenar.
+     * @param string $orden Orden de la clasificación ('asc' para ascendente, 'desc' para descendente).
+     * @return array Array ordenado.
+     */
+    public static function ordenarPorPropiedad($lista, string $propiedad, string $orden = 'asc')
+    {
+        usort($lista, function ($a, $b) use ($propiedad, $orden) {
+            if (!property_exists($a, $propiedad) || !property_exists($b, $propiedad)) {
+                echo "La propiedad '{$propiedad}' no existe en uno de los objetos.\n\n";
+            }
+
+            if ($a->$propiedad == $b->$propiedad) {
+                return 0;
+            }
+
+            if ($orden === 'asc') {
+                return ($a->$propiedad < $b->$propiedad) ? -1 : 1;
+            } else {
+                return ($a->$propiedad > $b->$propiedad) ? -1 : 1;
+            }
+        });
+        return $lista;
+    }
 }

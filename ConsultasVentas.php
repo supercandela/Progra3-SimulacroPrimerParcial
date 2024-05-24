@@ -4,15 +4,6 @@
 
 Alumna: BOGADO, Candela
 
-4- (1 pts.)ConsultasVentas.php: (por GET)
-Datos a consultar:
-
-b- El listado de ventas de un usuario ingresado.
-c- El listado de ventas entre dos fechas ordenado por nombre.
-d- El listado de ventas por sabor ingresado.
-e- El listado de ventas por vaso Cucurucho.
-
-
 */
 
 // require_once("Helado.php");
@@ -40,6 +31,23 @@ if (isset($_GET["fecha"])) {
     foreach ($nuevaLista as $venta) {
         $venta->MostrarVenta();
     }
+} else if (isset($_GET["fechaMin"]) && isset($_GET["fechaMax"])) {
+    $fechaMin = new DateTime($_GET["fechaMin"]);
+    $fechaMax = new DateTime($_GET["fechaMax"]);
+    $lista = Venta::ObtenerListaDeVentas();
+    $nuevaLista = Venta::FiltrarListaPorRangoDeFechas($lista, $fechaMin, $fechaMax);
+    $nuevaLista = Venta::OrdenarPorPropiedad($nuevaLista, "_usuario");
+    foreach ($nuevaLista as $venta) {
+        $venta->MostrarVenta();
+    }
+} else if (isset($_GET["sabor"])) {
+    $sabor = $_GET["sabor"];
+    $lista = Venta::ObtenerListaDeVentas();
+    $nuevaLista = Venta::OrdenarPorPropiedad($lista, "_sabor");
+    foreach ($nuevaLista as $venta) {
+        $venta->MostrarVenta();
+    }
+
 } else {
     echo "Parametros incorrectos\n\n";
 }
