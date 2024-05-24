@@ -10,7 +10,7 @@ require_once("Helado.php");
 require_once("Venta.php");
 
 if (
-    isset($_POST["email"]) && 
+    isset($_POST["email"]) &&
     isset($_POST["sabor"]) &&
     isset($_POST["tipo"]) && 
     isset($_POST["stock"]) && 
@@ -30,6 +30,9 @@ if (
     //Nueva venta
     $fechaVenta = new DateTime();
 
+    // Modificar la fecha para que sea la fecha de ayer
+    // $fechaVenta = $fechaVenta->modify('-2 day');
+
     //Data del archivo subido
     $nombre_archivo = $_FILES['imagen']['name'];
     $tipo_archivo = $_FILES['imagen']['type'];
@@ -38,14 +41,14 @@ if (
     //Obtener listado de productos desde archivo
     $listaHelados = Helado::ObtenerListaDeProductos();
     //Crear nuevo objeto con los parámetros recibidos
-    $heladoVendido = new Helado($sabor, 0, $tipo, "", $stock);
+    $heladoVendido = new Helado($sabor, 0, $tipo, $vaso, $stock);
     //Chequea si el producto ya existe en la lista
     $indiceH = Helado::VerificarSiExiste($listaHelados, $heladoVendido);
 
     if ($indiceH != -1) {
         if (Helado::VerificarStock($listaHelados[$indiceH], $stock)) {
             //Guardar fecha, numero de pedido y id
-            $venta = new Venta($fechaVenta->format("ymdhm"));
+            $venta = new Venta($email, $stock, $sabor, $vaso, $fechaVenta->format("ymdhm"));
             $listaVentas = Venta::ObtenerListaDeVentas();
             array_push($listaVentas, $venta);
             if (Venta::GuardarVentasJSON($listaVentas)) {

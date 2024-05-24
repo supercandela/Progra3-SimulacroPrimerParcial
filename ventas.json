@@ -1,12 +1,92 @@
 [
     {
-        "fecha": "2405240505",
-        "id": 39,
-        "pedido": 164750
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "chocolate",
+        "vaso": "cucurucho",
+        "fecha": "2405240605",
+        "id": 54,
+        "pedido": 385173
     },
     {
-        "fecha": "2405240505",
-        "id": 63,
-        "pedido": 849938
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "chocolate",
+        "vaso": "cucurucho",
+        "fecha": "2405240605",
+        "id": 40,
+        "pedido": 490178
+    },
+    {
+        "usuario": "candela@mail.com",
+        "cantidad": 1,
+        "sabor": "chocolate",
+        "vaso": "cucurucho",
+        "fecha": "2405240605",
+        "id": 4,
+        "pedido": 377946
+    },
+    {
+        "usuario": "candela@mail.com",
+        "cantidad": 1,
+        "sabor": "frutilla",
+        "vaso": "cucurucho",
+        "fecha": "2405230605",
+        "id": 18,
+        "pedido": 983413
+    },
+    {
+        "usuario": "candela@mail.com",
+        "cantidad": 1,
+        "sabor": "frutilla",
+        "vaso": "cucurucho",
+        "fecha": "2405230605",
+        "id": 18,
+        "pedido": 623049
+    },
+    {
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "frutilla",
+        "vaso": "cucurucho",
+        "fecha": "2405230605",
+        "id": 86,
+        "pedido": 515464
+    },
+    {
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "frutilla",
+        "vaso": "cucurucho",
+        "fecha": "2405230605",
+        "id": 37,
+        "pedido": 969473
+    },
+    {
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "frutilla",
+        "vaso": "cucurucho",
+        "fecha": "2405230605",
+        "id": 60,
+        "pedido": 615171
+    },
+    {
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "chocolate",
+        "vaso": "cucurucho",
+        "fecha": "2405220605",
+        "id": 16,
+        "pedido": 811753
+    },
+    {
+        "usuario": "usuario@mail.com",
+        "cantidad": 1,
+        "sabor": "chocolate",
+        "vaso": "cucurucho",
+        "fecha": "2405220605",
+        "id": 15,
+        "pedido": 222983
     }
 ]

@@ -33,11 +33,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         echo "No se especificó ninguna acción.\n\n";
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_POST['accion'])) {
-        $accion = $_POST['accion'];
+    if (isset($_GET['accion'])) {
+        $accion = $_GET['accion'];
         
         switch ($accion) {
-            case 'altaHelado':
+            case 'consultaVentas':
                 include 'ConsultasVentas.php';
                 break;
 

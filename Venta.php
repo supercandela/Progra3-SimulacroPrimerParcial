@@ -1,15 +1,23 @@
 <?php
 
+require_once("Helado.php");
+
 class Venta
 {
     private $_id;
     private $_pedido;
     private $_fecha;
-    private $_cantidad;
     private $_usuario;
+    private $_cantidad;
+    private $_sabor;
+    private $_vaso;
 
-    public function __construct ($fecha = new DateTime(), $id = 0, $pedido = 0) {
-        $this->_fecha = $fecha;
+    public function __construct ($usuario, $cantidad, $sabor, $vaso, $fecha, $id = 0, $pedido = 0) {
+        $this->_usuario = $usuario;
+        $this->_cantidad = $cantidad;
+        $this->_sabor = $sabor;
+        $this->_vaso = $vaso;
+        $this->_fecha = DateTime::createFromFormat("ymdhm", $fecha);
         if ($id == 0) {
             $this->_id = rand(1, 100);
         } else {
@@ -34,7 +42,7 @@ class Venta
             $data = json_decode($valores, true);
             if ($data != null) {
                 foreach ($data as $elemento) {
-                    $venta = new Venta($elemento["fecha"], $elemento["id"], $elemento["pedido"]);
+                    $venta = new Venta($elemento["usuario"], $elemento["cantidad"], $elemento["sabor"], $elemento["vaso"], $elemento["fecha"], $elemento["id"], $elemento["pedido"]);
                     array_push($array, $venta);
                 }
             }
@@ -64,7 +72,11 @@ class Venta
     public static function convertirAtributosAPublico($elemento)
     {
         $ventaPublica = new stdClass();
-        $ventaPublica->fecha = $elemento->_fecha;
+        $ventaPublica->usuario = $elemento->_usuario;
+        $ventaPublica->cantidad = $elemento->_cantidad;
+        $ventaPublica->sabor = $elemento->_sabor;
+        $ventaPublica->vaso = $elemento->_vaso;
+        $ventaPublica->fecha = $elemento->_fecha->format("ymdhm");
         $ventaPublica->id = $elemento->_id;
         $ventaPublica->pedido = $elemento->_pedido;
         return $ventaPublica;
@@ -73,7 +85,7 @@ class Venta
     /**
      * sube la imagen al servidor en la carpeta /ImagenesDeLaVenta/2024.
      */
-    public static function GuardarFoto($foto, $sabor, $tipo, $vaso, $email, $fecha, $tipo_archivo)
+    public static function GuardarFoto ($foto, $sabor, $tipo, $vaso, $email, $fecha, $tipo_archivo)
     {
         //Carpeta donde voy a guardar los archivos
         $carpeta_archivos = 'ImagenesDeLaVenta/2024/';
@@ -85,6 +97,50 @@ class Venta
         } else {
             return false;
         }
+    }
+
+    public static function FiltrarListaPorFechaExacta ($lista, Datetime $fecha) {
+        $listaConFiltro = array();
+        if (count($lista) > 0) {
+            for ($i = 0; $i < count($lista); $i++) {
+                if ($lista[$i]->_fecha->format('Y-m-d') == $fecha->format('Y-m-d')) {
+                    array_push($listaConFiltro, $lista[$i]);
+                }
+            }
+        }
+        return $listaConFiltro;
+    }
+
+    public static function SumarCantidades ($lista) {
+        $cantidadTotal = 0;
+        if (count($lista) > 0) {
+            for ($i = 0; $i < count($lista); $i++) {
+                $cantidadTotal += $lista[$i]->_cantidad;
+            }
+        }
+        return $cantidadTotal;
+    }
+
+    public static function FiltrarListaPorUsuario ($lista, $usuario) {
+        $listaConFiltro = array();
+        if (count($lista) > 0) {
+            for ($i = 0; $i < count($lista); $i++) {
+                if ($lista[$i]->_usuario == $usuario) {
+                    array_push($listaConFiltro, $lista[$i]);
+                }
+            }
+        }
+        return $listaConFiltro;
+    }
+
+    public function MostrarVenta () {
+        echo "ID Venta: " . $this->_id . "\n";
+        echo "ID Pedido: " . $this->_pedido . "\n";
+        echo "Usuario: " . $this->_usuario . "\n";
+        echo "Fecha: " . $this->_fecha->format('Y-m-d') . "\n";
+        echo "Cantidad: " . $this->_cantidad . "\n";
+        echo "Sabor: " . $this->_sabor . "\n";
+        echo "Tipo de vaso: " . $this->_vaso . "\n\n";
     }
 
 }

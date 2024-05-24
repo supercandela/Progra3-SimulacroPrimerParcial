@@ -4,7 +4,7 @@
         "precio": 150,
         "tipo": "agua",
         "vaso": "plastico",
-        "stock": 300,
+        "stock": 295,
         "id": 94
     },
     {
@@ -12,7 +12,7 @@
         "precio": 150,
         "tipo": "agua",
         "vaso": "plastico",
-        "stock": 92,
+        "stock": 79,
         "id": 44
     }
 ]
